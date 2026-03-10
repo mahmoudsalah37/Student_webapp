@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using StudentEnrollment.Data;
@@ -11,9 +12,11 @@ using StudentEnrollment.Data;
 namespace StudentEnrollment.Data.Migrations
 {
     [DbContext(typeof(StudentEnrollmentDbContext))]
-    partial class StudentEnrollmentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260310093213_SeededDefaultUsersAndRoles")]
+    partial class SeededDefaultUsersAndRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -434,8 +437,7 @@ namespace StudentEnrollment.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEOppS140pm1QK0e1a9EaCMy+7mwCa24VwpnZqo/aaemvPQsiCfUW/28UejSaRHE3sg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "18a72843-04ad-498f-aa40-36bb4edf804e",
-                            TwoFactorEnabled = false,
-                            UserName = "School Admin"
+                            TwoFactorEnabled = false
                         },
                         new
                         {
@@ -452,8 +454,7 @@ namespace StudentEnrollment.Data.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEBCqeyy/X1ADwTUMyjX1YATArcBE3cviRfZzYtu3Cz4oNzqeTA312ea5qhJtq0rEvg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "9bda1367-8d1d-4509-900b-ecf2b1ff6873",
-                            TwoFactorEnabled = false,
-                            UserName = "School User"
+                            TwoFactorEnabled = false
                         });
                 });
 

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudentEnrollment.Data;
@@ -10,6 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 var con = builder.Configuration.GetConnectionString("SchoolDbConnection");
 builder.Services.AddDbContext<StudentEnrollmentDbContext>(options =>
     options.UseNpgsql(con).UseSnakeCaseNamingConvention());
+
+builder.Services.AddIdentityCore<SchoolUser>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<StudentEnrollmentDbContext>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

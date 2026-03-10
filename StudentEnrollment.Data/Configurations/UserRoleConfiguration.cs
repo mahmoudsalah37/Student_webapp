@@ -4,24 +4,20 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace StudentEnrollment.Data.Configurations;
 
-internal class UserRoleConfiguration : IEntityTypeConfiguration<IdentityRole>
+internal class UserRoleConfiguration : IEntityTypeConfiguration<IdentityUserRole<string>>
 {
-    public void Configure(EntityTypeBuilder<IdentityRole> builder)
+    public void Configure(EntityTypeBuilder<IdentityUserRole<string>> builder)
     {
         builder.HasData(
-      new IdentityRole
+      new IdentityUserRole<string>
       {
-          Id = "264e25b7-6924-4cb4-aa9f-020ad53ef821",
-          Name = "Administrator",
-          NormalizedName = "ADMINISTRATOR",
-          ConcurrencyStamp = "5322123f-bb76-44e0-9472-4e3ca81918aa"
+          RoleId = "264e25b7-6924-4cb4-aa9f-020ad53ef821",
+          UserId = "8f805e2b-a44d-4a1b-b491-0d8f4175e981"
       },
-      new IdentityRole
+      new IdentityUserRole<string>
       {
-          Id = "8f805e2b-a44d-4a1b-b491-0d8f4175e981",
-          Name = "User",
-          NormalizedName = "USER",
-          ConcurrencyStamp = "51a1ec45-daf9-4621-8585-fb371dea6887"
+          RoleId = "8f805e2b-a44d-4a1b-b491-0d8f4175e981",
+          UserId = "264e25b7-6924-4cb4-aa9f-020ad53ef821"
       }
   );
     }
