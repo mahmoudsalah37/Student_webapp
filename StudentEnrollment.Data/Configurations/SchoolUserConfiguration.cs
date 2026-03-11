@@ -16,9 +16,9 @@ internal class SchoolUserConfiguration : IEntityTypeConfiguration<SchoolUser>
           Email = "schooladmin@localhost.com",
           NormalizedEmail = "SCHOOLADMIN@LOCALHOST.COM",
           NormalizedUserName = "SCHOOLADMIN@LOCALHOST.COM",
+          UserName = "SCHOOLADMIN@LOCALHOST.COM",
           FirstName = "School",
           LastName = "Admin",
-          UserName = "School Admin",
           PasswordHash = "AQAAAAIAAYagAAAAEOppS140pm1QK0e1a9EaCMy+7mwCa24VwpnZqo/aaemvPQsiCfUW/28UejSaRHE3sg==", // Static hash for P@ssword!
           EmailConfirmed = true,
           SecurityStamp = "18a72843-04ad-498f-aa40-36bb4edf804e",
@@ -30,9 +30,9 @@ internal class SchoolUserConfiguration : IEntityTypeConfiguration<SchoolUser>
           Email = "schooluser@localhost.com",
           NormalizedEmail = "SCHOOLUSER@LOCALHOST.COM",
           NormalizedUserName = "SCHOOLUSER@LOCALHOST.COM",
+          UserName = "SCHOOLUSER@LOCALHOST.COM",
           FirstName = "School",
           LastName = "User",
-          UserName = "School User",
           PasswordHash = "AQAAAAIAAYagAAAAEBCqeyy/X1ADwTUMyjX1YATArcBE3cviRfZzYtu3Cz4oNzqeTA312ea5qhJtq0rEvg==", // Static hash for P@ssword1
           EmailConfirmed = true,
           SecurityStamp = "9bda1367-8d1d-4509-900b-ecf2b1ff6873",
