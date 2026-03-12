@@ -6,6 +6,7 @@ using StudentEnrollment.Data.Contracts;
 using TodoApi.DTOs;
 using TodoApi.DTOs.Student;
 using AutoMapper;
+using TodoApi.Services;
 
 namespace TodoApi.Endpoints;
 
@@ -55,11 +56,12 @@ public static class StudentEndpoints
         .WithName("CreateStudent")
         .Produces<StudentDto>(StatusCodes.Status201Created);
 
-        routes.MapPut("/api/students/{id}", async ([FromServices] IStudentRepository studentRepository, [FromServices] IMapper mapper, [FromRoute] int id, [FromBody] CreateStudentDto createStudentDto) =>
+        routes.MapPut("/api/students/{id}", async ([FromServices] IStudentRepository studentRepository, [FromServices] IMapper mapper, [FromServices] IFileUpload fileUpload, [FromRoute] int id, [FromBody] CreateStudentDto createStudentDto) =>
         {
             var student = await studentRepository.GetByIdAsync(id);
             if (student is null) return Results.NotFound();
             mapper.Map(createStudentDto, student);
+            student.image = fileUpload.UploadStudentFile(createStudentDto.ProfilePicture, createStudentDto.OriginalFileName);
             await studentRepository.UpdateAsync(student);
             return Results.NoContent();
         }).WithTags(nameof(Student))

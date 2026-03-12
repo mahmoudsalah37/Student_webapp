@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using TodoApi.DTOs;
 using StudentEnrollment.Data.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TodoApi.Endpoints;
 
@@ -17,7 +18,9 @@ public static class CourseEndpoints
             var courses = await courseRepository.GetAllAsync();
             var courseDtos = mapper.Map<List<CourseDto>>(courses);
             return Results.Ok(courseDtos);
-        }).WithTags(nameof(Course))
+        })
+        .WithTags(nameof(Course))
+        .AllowAnonymous()
         .WithName("GetAllCourses")
         .Produces<List<CourseDto>>(StatusCodes.Status200OK);
 
@@ -28,6 +31,7 @@ public static class CourseEndpoints
             var courseDto = mapper.Map<CourseDto>(course);
             return Results.Ok(courseDto);
         }).WithTags(nameof(Course))
+        .AllowAnonymous()
         .WithName("GetCourseById")
         .Produces<CourseDto>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound);
@@ -69,7 +73,7 @@ public static class CourseEndpoints
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound);
 
-        routes.MapDelete("/api/courses/{id}", async ([FromServices] ICourseRepository courseRepository, [FromRoute] int id) =>
+        routes.MapDelete("/api/courses/{id}", [Authorize(Roles = "Administrator")] async ([FromServices] ICourseRepository courseRepository, [FromRoute] int id) =>
         {
             var course = await courseRepository.GetByIdAsync(id);
             if (course is null) return Results.NotFound();

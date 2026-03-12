@@ -1,5 +1,3 @@
-using System;
-using Microsoft.AspNetCore.Identity;
 using TodoApi.DTOs.Authentication;
 
 namespace TodoApi.Services;
